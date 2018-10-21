@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Author
+    public class Shelf
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LasttName { get; set; }
-        public virtual Book book { get; set; }
+        public int BookId { get; set; }
+        public int LoanId { get; set; }
     }
 }

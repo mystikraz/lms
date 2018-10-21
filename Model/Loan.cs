@@ -7,12 +7,22 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Publisher
+    public class Loan
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+
         [ForeignKey("Books")]
         public int BookId { get; set; }
         public virtual Book Books { get; set; }
+
+        public DateTime LoanOn { get; set; }
+        public int Quantity { get; set; }
+        public DateTime DateReturned { get; set; }
+
+        [ForeignKey("Members")]
+        public int MemberId { get; set; }
+        public virtual Member Members { get; set; }
+
+
     }
 }

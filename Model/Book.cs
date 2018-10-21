@@ -10,5 +10,10 @@ namespace Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int Quantities { get; set; }
+        public bool AgeRestricted { get; set; }
+        public int LoanDuration { get; set; }
+        public DateTime CreatedAt { get; set; }
+
     }
 }
