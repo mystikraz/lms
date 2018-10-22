@@ -17,7 +17,7 @@ namespace Model
 
         public DateTime LoanOn { get; set; }
         public int Quantity { get; set; }
-        public DateTime DateReturned { get; set; }
+        public DateTime? DateReturned { get; set; }
 
         [ForeignKey("Members")]
         public int MemberId { get; set; }

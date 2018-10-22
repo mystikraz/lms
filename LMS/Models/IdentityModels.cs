@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Model;
 
 namespace LMS.Models
 {
@@ -21,10 +22,15 @@ namespace LMS.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("LmsConnection", throwIfV1Schema: false)
         {
         }
-
+        public DbSet<Book>Books { get; set; }
+        public DbSet<Loan>Loans { get; set; }
+        public DbSet<Member>Members { get; set; }
+        public DbSet<Author>Authors { get; set; }
+        public DbSet<Publisher>Publishers { get; set; }
+        public DbSet<MembershipCategory> MembershipCategories { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
