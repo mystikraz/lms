@@ -201,17 +201,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810220525033_adds-initial-models.cs" />
-    <Compile Include="Migrations\201810220525033_adds-initial-models.Designer.cs">
-      <DependentUpon>201810220525033_adds-initial-models.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810220624372_removes-loan-duration-from-book-model.cs" />
-    <Compile Include="Migrations\201810220624372_removes-loan-duration-from-book-model.Designer.cs">
-      <DependentUpon>201810220624372_removes-loan-duration-from-book-model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810221018195_fixes-general-issues.cs" />
-    <Compile Include="Migrations\201810221018195_fixes-general-issues.Designer.cs">
-      <DependentUpon>201810221018195_fixes-general-issues.cs</DependentUpon>
+    <Compile Include="Migrations\201810250618336_initial-models.cs" />
+    <Compile Include="Migrations\201810250618336_initial-models.Designer.cs">
+      <DependentUpon>201810250618336_initial-models.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -219,6 +211,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\BookAuthorPublisher.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -331,14 +324,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810220525033_adds-initial-models.resx">
-      <DependentUpon>201810220525033_adds-initial-models.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810220624372_removes-loan-duration-from-book-model.resx">
-      <DependentUpon>201810220624372_removes-loan-duration-from-book-model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810221018195_fixes-general-issues.resx">
-      <DependentUpon>201810221018195_fixes-general-issues.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810250618336_initial-models.resx">
+      <DependentUpon>201810250618336_initial-models.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

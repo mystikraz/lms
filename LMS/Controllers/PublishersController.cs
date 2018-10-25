@@ -18,7 +18,7 @@ namespace LMS.Controllers
         // GET: Publishers
         public ActionResult Index()
         {
-            var publishers = db.Publishers.Include(p => p.Books);
+            var publishers = db.Publishers.ToList();
             return View(publishers.ToList());
         }
 
@@ -58,7 +58,7 @@ namespace LMS.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BookId = new SelectList(db.Books, "Id", "Name", publisher.BookId);
+            //ViewBag.BookId = new SelectList(db.Books, "Id", "Name", publisher.BookId);
             return View(publisher);
         }
 
@@ -74,7 +74,7 @@ namespace LMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BookId = new SelectList(db.Books, "Id", "Name", publisher.BookId);
+            //ViewBag.BookId = new SelectList(db.Books, "Id", "Name", publisher.BookId);
             return View(publisher);
         }
 
@@ -91,7 +91,7 @@ namespace LMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BookId = new SelectList(db.Books, "Id", "Name", publisher.BookId);
+            //ViewBag.BookId = new SelectList(db.Books, "Id", "Name", publisher.BookId);
             return View(publisher);
         }
 

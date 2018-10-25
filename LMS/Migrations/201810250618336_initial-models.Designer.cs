@@ -7,13 +7,13 @@ namespace LMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addsinitialmodels : IMigrationMetadata
+    public sealed partial class initialmodels : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addsinitialmodels));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialmodels));
         
         string IMigrationMetadata.Id
         {
-            get { return "201810220525033_adds-initial-models"; }
+            get { return "201810250618336_initial-models"; }
         }
         
         string IMigrationMetadata.Source
