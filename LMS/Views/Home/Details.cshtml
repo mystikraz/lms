@@ -1,0 +1,87 @@
+﻿@model LMS.ViewModel.BookLoanVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Authors.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book.Authors.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Publishers.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book.Publishers.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.Quantities)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book.Quantities)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.AgeRestricted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book.AgeRestricted)
+        </dd>
+
+        <dt>
+            OnShelf
+        </dt>
+
+        <dd>
+            @{
+                if (Model.Loan != null)
+                {
+                    foreach (var loan in Model.Loans)
+                    {
+                        int onShelf = Model.Book.Quantities - loan.Quantity;
+                        <p>@onShelf</p>
+                        <p>@Model.Book.Quantities</p>
+                        <p>@loan.Quantity</p>
+                    }
+                }
+                else
+                {
+                    <p>@Model.Book.Quantities</p>
+                }
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Book.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book.CreatedAt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
