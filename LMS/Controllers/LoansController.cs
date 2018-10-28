@@ -20,15 +20,22 @@ namespace LMS.Controllers
         {
             if (option == "Id")
             {
-                int memberId = Convert.ToInt32(search);
+                int memberId = 0;
+                if (search != null)
+                {
+                    memberId = Convert.ToInt32(search);
+                    
+                }
                 var loans = db.Loans.Include(l => l.Books).Include(l => l.Members).Where(x => x.MemberId == memberId);
                 return View(loans.ToList());
+
             }
             else if(option=="Name")
             {
                 var loans = db.Loans.Include(l => l.Books).Include(l => l.Members).Where(x => x.Members.FirstName == search || x.Members.LastName == search);
                 return View(loans.ToList());
             }
+           
             else
             {
                 var loans = db.Loans.Include(l => l.Books).Include(l => l.Members);
@@ -65,7 +72,7 @@ namespace LMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,BookId,LoanOn,Quantity,DateReturned,MemberId")] Loan loan)
+        public ActionResult Create([Bind(Include = "Id,BookId,LoanOn,Quantity,DateReturned,AgeRestricted,MemberId")] Loan loan)
         {
             if (ModelState.IsValid)
             {
