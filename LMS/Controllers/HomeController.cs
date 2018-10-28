@@ -55,7 +55,8 @@ namespace LMS.Controllers
             }
             BookLoan = new BookLoanVM();
             ViewBag.OnShelf = true;
-            var booksOnLoan = (from l in db.Loans join b in db.Books on l.BookId equals b.Id where b.Id == id select new { l }).ToList().Select(x => x.l).ToList();
+            //var booksOnLoan = (from l in db.Loans join b in db.Books on l.BookId equals b.Id where b.Id == id && l.DateReturned!=null select new { l }).ToList().Select(x => x.l).ToList();
+            var booksOnLoan = (from l in db.Loans join b in db.Books on l.BookId equals b.Id where b.Id == id && l.DateReturned == null select new { l }).ToList().Select(x => x.l).ToList();
             BookLoan.Loans = booksOnLoan;
             BookLoan.Book = book;
             return View(BookLoan);

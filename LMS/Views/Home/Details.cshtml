@@ -56,7 +56,7 @@
 
         <dd>
             @{
-                if (Model.Loan != null)
+                if (Model.Loans != null && Model.Loans.Count!=0)
                 {
                     foreach (var loan in Model.Loans)
                     {

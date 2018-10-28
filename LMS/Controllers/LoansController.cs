@@ -16,10 +16,25 @@ namespace LMS.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Loans
-        public ActionResult Index()
+        public ActionResult Index(string option, string search)
         {
-            var loans = db.Loans.Include(l => l.Books).Include(l => l.Members);
-            return View(loans.ToList());
+            if (option == "Id")
+            {
+                int memberId = Convert.ToInt32(search);
+                var loans = db.Loans.Include(l => l.Books).Include(l => l.Members).Where(x => x.MemberId == memberId);
+                return View(loans.ToList());
+            }
+            else if(option=="Name")
+            {
+                var loans = db.Loans.Include(l => l.Books).Include(l => l.Members).Where(x => x.Members.FirstName == search || x.Members.LastName == search);
+                return View(loans.ToList());
+            }
+            else
+            {
+                var loans = db.Loans.Include(l => l.Books).Include(l => l.Members);
+                return View(loans.ToList());
+            }
+            
         }
 
         // GET: Loans/Details/5
