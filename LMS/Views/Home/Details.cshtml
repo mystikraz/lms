@@ -11,7 +11,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Book.Authors.FirstName)
+           Author
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Book.Publishers.Name)
+           Publisher
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Book.Name)
+            Book Title
         </dt>
 
         <dd>
@@ -62,8 +62,8 @@
                     {
                         int onShelf = Model.Book.Quantities - loan.Quantity;
                         <p>@onShelf</p>
-                        <p>@Model.Book.Quantities</p>
-                        <p>@loan.Quantity</p>
+                        @*<p>@Model.Book.Quantities</p>
+                        <p>@loan.Quantity</p>*@
                     }
                 }
                 else
@@ -72,13 +72,7 @@
                 }
             }
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Book.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Book.CreatedAt)
-        </dd>
+       
 
     </dl>
 </div>

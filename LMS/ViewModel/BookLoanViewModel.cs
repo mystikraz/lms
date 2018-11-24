@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace Model
+namespace LMS.ViewModel
 {
-    public class Book
+    public class BookLoanViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -20,7 +20,8 @@ namespace Model
         [ForeignKey("Publishers")]
         public int PublisherId { get; set; }
         public virtual Publisher Publishers { get; set; }
-        public DateTime PublishedOn { get; set; }
-
+        [ForeignKey("Loans")]
+        public int onShelf { get; set; }
+        public virtual Loan Loans { get; set; }
     }
 }

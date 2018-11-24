@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LMS.Models;
 using Model;
+using Vereyon.Web;
 
 namespace LMS.Controllers
 {
@@ -18,30 +19,35 @@ namespace LMS.Controllers
         // GET: Loans
         public ActionResult Index(string option, string search)
         {
-            if (option == "Id")
+            if (option == "id")
             {
                 int memberId = 0;
                 if (search != null)
                 {
                     memberId = Convert.ToInt32(search);
-                    
+
                 }
                 var loans = db.Loans.Include(l => l.Books).Include(l => l.Members).Where(x => x.MemberId == memberId);
                 return View(loans.ToList());
 
             }
-            else if(option=="Name")
+            else if (option == "memberName")
             {
                 var loans = db.Loans.Include(l => l.Books).Include(l => l.Members).Where(x => x.Members.FirstName == search || x.Members.LastName == search);
                 return View(loans.ToList());
             }
-           
+            else if (option == "bookTitle")
+            {
+                var loans = db.Loans.Include(l => l.Books).Include(l => l.Members).Where(x => x.Books.Name == search);
+                return View(loans.ToList());
+            }
+
             else
             {
                 var loans = db.Loans.Include(l => l.Books).Include(l => l.Members);
                 return View(loans.ToList());
             }
-            
+
         }
 
         // GET: Loans/Details/5
@@ -76,13 +82,47 @@ namespace LMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                var books = db.Books.Find(loan.BookId);
+                //var loans = db.Loans.Find(loan.BookId);
+                var loans = db.Loans.Where(x => x.BookId == loan.BookId).FirstOrDefault();
+                ViewBag.BookId = new SelectList(db.Books, "Id", "Name", loan.BookId);
+                ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName", loan.MemberId);
+                //if (loanQuantity > 0)
+                //{
+                //    FlashMessage.Warning("The book is not available currenlty!");
+                //    return View(loan);
+                //}
+                if (books == null)
+                {
+                    FlashMessage.Warning("The book is not on the shelf currently!!");
+
+                    return View(loan);
+                }
+                if (loans != null)
+                {
+                    int bookOnShelf = books.Quantities - loans.Quantity;
+
+                    if (bookOnShelf < loan.Quantity)
+                    {
+                        FlashMessage.Warning(@"We have {0} books on the shelf currently!", bookOnShelf);
+
+                        return View(loan);
+                    }
+                }
+
+                //if (books.Quantities <= loanQuantity)
+                //{
+                //    FlashMessage.Warning("The Quantity of the book is less on the shelf!");
+                //    return View(loan);
+
+                //}
                 db.Loans.Add(loan);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BookId = new SelectList(db.Books, "Id", "Name", loan.BookId);
-            ViewBag.MemberId = new SelectList(db.Members, "Id", "FirstName", loan.MemberId);
+
             return View(loan);
         }
 

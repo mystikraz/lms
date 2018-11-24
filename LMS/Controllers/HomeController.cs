@@ -32,7 +32,7 @@ namespace LMS.Controllers
             }
             else
             {
-                books = db.Books.Where(x => x.Publishers.Name == search || search == null).ToList();
+                books = db.Books.Where(x => x.Publishers.Name == search || search == null).OrderBy(x=>x.PublishedOn).OrderBy(x=>x.Authors.FirstName).ToList();
 
             }
             BookLoan.Books = books;
